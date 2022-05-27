@@ -54,6 +54,11 @@ export class FetchData extends Component {
   async populateWeatherData() {
     const response = await fetch('weatherforecast');
     const data = await response.json();
+    const pokeResp = await fetch('pokemon/pikachu');
+    console.log("1");
+    console.log(pokeResp);
+    console.log("2");
+    console.log(pokeResp.json());
     this.setState({ forecasts: data, loading: false });
   }
 }
