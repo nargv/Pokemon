@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PokeApiNet;
+using Pokemon.Services;
 using System.Threading.Tasks;
 
 namespace Pokemon.Controllers
@@ -8,11 +8,11 @@ namespace Pokemon.Controllers
     [Route("[controller]")]
     public class PokemonController : ControllerBase
     {
-        private readonly PokeApiClient pokeClient;
+        private readonly IPokemonService _pokemonService;
 
-        public PokemonController()
+        public PokemonController(IPokemonService pokemonService)
         {
-            pokeClient = new PokeApiClient();
+            _pokemonService = pokemonService;
         }
 
         [HttpGet("{name}")]
@@ -20,10 +20,10 @@ namespace Pokemon.Controllers
         {
             if (name != null)
             {
-                var pikachu = await pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(name).ConfigureAwait(false);
-                if (pikachu != null)
+                var pokemon = await _pokemonService.GetPokemon(name);
+                if (pokemon != null)
                 {
-                    return Ok(pikachu);
+                    return Ok(pokemon);
                 }
                 return NotFound();
             }
