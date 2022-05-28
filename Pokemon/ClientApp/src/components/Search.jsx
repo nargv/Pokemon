@@ -9,6 +9,7 @@ const Search = () => {
     const [searchInput, setSearchInput] = useState("");
     const [validEntry, setValidEntry] = useState(false);
     const [hideWarning, setHideWarning] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     const onValidation = (value) => {
         if(value === "") {
@@ -25,8 +26,9 @@ const Search = () => {
         if(!validEntry) {
             setHideWarning(false);
         } else {
+            setIsLoading(true);
             const result = await fetch(`pokemon/${searchInput}`);
-            console.log(result.json());
+            setIsLoading(false);
         }
     }
 
@@ -38,9 +40,9 @@ const Search = () => {
                 warningMessage={"search input is invalid"} 
                 hideWarning={hideWarning}
             />
-            <StyledButton handleOnClick={handleOnSearch}>
+            <Button handleOnClick={handleOnSearch} isLoading={isLoading}>
                 <SearchIcon /> Search
-            </StyledButton>
+            </Button>
         </StyledContainer>
     );
 }
@@ -52,8 +54,4 @@ const StyledContainer = styled(Container)`
     flex-basis: unset;
     display: flex;
     justify-content: center;
-`;
-
-const StyledButton = styled(Button)`
-    background: yellow;
 `;
