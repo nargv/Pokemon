@@ -18,7 +18,7 @@ namespace Pokemon.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            if (name != null && name.Length > 2)
+            if (name != null)
             {
                 var pikachu = await pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(name).ConfigureAwait(false);
                 if (pikachu != null)
