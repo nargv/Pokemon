@@ -17,7 +17,9 @@ const Input = (props) => {
 
     return (
         <div>
-            <Text type={"large"}>{props.label}</Text>
+            {props.label && (
+                <Text type={"large"}>{props.label}</Text>
+            )}
             <StyledInput type="text" onChange={handleOnValueChange} />
             {showWarning && (
                 <Text type={"small"}>{props.warningMessage}</Text>
@@ -29,6 +31,8 @@ const Input = (props) => {
 export default Input;
 
 const StyledInput = styled.input`
-    border: 2px solid red;
+    border: 2px solid grey;
     border-radius: 4px;
+    height: 40px;
+    font-size: 20px;
 `;
