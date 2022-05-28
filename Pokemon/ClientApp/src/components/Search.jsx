@@ -7,22 +7,38 @@ import styled from 'styled-components';
 
 const Search = () => {
     const [searchInput, setSearchInput] = useState("");
+    const [validEntry, setValidEntry] = useState(false);
+    const [hideWarning, setHideWarning] = useState(true);
 
     const onValidation = (value) => {
         if(value === "") {
-            return false;
+            setValidEntry(false);
+            setHideWarning(false);
+            return;
         }
-        return true;
+        setValidEntry(true);
+        setHideWarning(true);
+        setSearchInput(value);
+    }
+
+    const handleOnSearch = async () => {
+        if(!validEntry) {
+            setHideWarning(false);
+        } else {
+            const result = await fetch(`pokemon/${searchInput}`);
+            console.log(result.json());
+        }
     }
 
     return (
         <StyledContainer>
-            <Input 
+            <Input
                 onValidation={onValidation}
                 onValueChange={setSearchInput}
                 warningMessage={"search input is invalid"} 
+                hideWarning={hideWarning}
             />
-            <StyledButton>
+            <StyledButton handleOnClick={handleOnSearch}>
                 <SearchIcon /> Search
             </StyledButton>
         </StyledContainer>
