@@ -27,8 +27,7 @@ namespace Pokemon.Controllers
                 }
                 return NotFound();
             }
-            var result = BadRequest();
-            return result;
+            return BadRequest();
         }
     }
 }
