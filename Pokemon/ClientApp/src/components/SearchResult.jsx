@@ -7,7 +7,7 @@ const SearchResult = (props) => {
 
     const getNoResults = () => {
         return (
-            <p>No Results.</p>
+            <Text type={"medium"} isWarning={true}>No Results.</Text>
         );
     }
 

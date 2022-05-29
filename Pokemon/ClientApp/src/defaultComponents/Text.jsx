@@ -1,4 +1,5 @@
 import React from 'react';
+import { Container } from 'reactstrap';
 import styled from 'styled-components';
 
 const Text = (props) => {
@@ -20,16 +21,17 @@ const Text = (props) => {
     }
 
     return (
-        <div>
+        <Container style={props.isWarning ? { color:'red' } : {}}>
             {getText()}
-        </div>
+        </Container>
     );
 }
 
 export default Text;
 
 const LargeText = styled.p`
-    font-size: 30px;
+    font-size: 2.5rem;
+    font-weight: 500;
 `;
 
 const MediumText = styled.p`
@@ -37,6 +39,5 @@ const MediumText = styled.p`
 `;
 
 const SmallText = styled.p`
-    font-size: 11px;
-    color: red;
+    font-size: 14px;
 `;

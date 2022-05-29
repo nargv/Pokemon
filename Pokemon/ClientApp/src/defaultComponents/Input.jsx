@@ -17,7 +17,7 @@ const Input = (props) => {
             )}
             <StyledInput type="text" onChange={handleOnValueChange} />
             {!props.hideWarning && (
-                <Text type={"small"}>{props.warningMessage}</Text>
+                <Text type={"small"} isWarning={true}>{props.warningMessage}</Text>
             )}
         </div>
     );

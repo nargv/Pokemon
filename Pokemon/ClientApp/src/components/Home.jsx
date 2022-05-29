@@ -3,6 +3,7 @@ import { Container } from 'reactstrap';
 import SearchPokemon from './SearchPokemon';
 import styled from 'styled-components';
 import SearchResult from './SearchResult';
+import Text from '../defaultComponents/Text';
 
 const Home = () => {
   const [result, setResult] = useState();
@@ -15,8 +16,8 @@ const Home = () => {
 
   return (
     <StyledContainer>
-      <h1>Pokemon search engine</h1>
-      <p>Enter a pokemon name to find out more details...</p>
+      <Text type={"large"}>Pokemon search engine</Text>
+      <Text type={"medium"}>Enter a pokemon name to find out more details...</Text>
       <SearchPokemon onSetResult={handleOnSetResult} />
       {displayResults && <SearchResult result={result} />}
     </StyledContainer>
