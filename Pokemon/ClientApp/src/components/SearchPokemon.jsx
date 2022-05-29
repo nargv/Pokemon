@@ -4,8 +4,11 @@ import Input from '../defaultComponents/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
+import { useSelector } from 'react-redux';
 
 const SearchPokemon = (props) => {
+    const searches = useSelector(state => state.searches);
+
     const [searchInput, setSearchInput] = useState("");
     const [validEntry, setValidEntry] = useState(false);
     const [hideWarning, setHideWarning] = useState(true);
@@ -40,16 +43,21 @@ const SearchPokemon = (props) => {
         if(!validEntry) {
             setHideWarning(false);
         } else {
-            setIsLoading(true);
-            await fetch(`pokemon/${searchInput}`)
-                .then(response => {
-                    if(response.ok)
-                        return response.json();
-                })
-                .then(json => {
-                    props.onSetResult(json);
-                });
-            setIsLoading(false);
+            const matchesInHistory = searches.searches.filter(x => x.name === searchInput);
+            if(matchesInHistory.length > 0) {
+                props.onSetResult(matchesInHistory[0]);
+            } else {
+                setIsLoading(true);
+                await fetch(`pokemon/${searchInput}`)
+                    .then(response => {
+                        if(response.ok)
+                            return response.json();
+                    })
+                    .then(json => {
+                        props.onSetResult(json);
+                    });
+                setIsLoading(false);
+            }
         }
     }
 
