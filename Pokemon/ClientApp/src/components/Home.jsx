@@ -4,12 +4,19 @@ import SearchPokemon from './SearchPokemon';
 import styled from 'styled-components';
 import SearchResult from './SearchResult';
 import Text from '../defaultComponents/Text';
+import { useDispatch } from 'react-redux';
+import { addSearch } from '../searches';
 
 const Home = () => {
+  const dispatch = useDispatch();
+
   const [result, setResult] = useState();
   const [displayResults, setDisplayResults] = useState(false);
 
   const handleOnSetResult = (value) => {
+    if(value) {
+      dispatch(addSearch(value));
+    }
     setResult(value);
     setDisplayResults(true);
   }
