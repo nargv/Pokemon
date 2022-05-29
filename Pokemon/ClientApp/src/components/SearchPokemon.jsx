@@ -75,4 +75,6 @@ const StyledContainer = styled(Container)`
     flex-basis: unset;
     display: flex;
     justify-content: center;
+    height: 60px;
+    margin-top: 30px;
 `;
