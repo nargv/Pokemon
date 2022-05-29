@@ -5,7 +5,7 @@ import Text from '../defaultComponents/Text';
 import SearchResult from './SearchResult';
 import styled from 'styled-components';
 
-const Counter = () => {
+const History = () => {
   const searches = useSelector(state => state.searches);
 
   const getSearches = () => {
@@ -26,7 +26,7 @@ const Counter = () => {
   );
 }
 
-export default Counter;
+export default History;
 
 const StyledContainer = styled(Container)`
   width: 80%;
