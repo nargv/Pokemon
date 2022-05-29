@@ -9,11 +9,11 @@
             Sprite = sprite;
         }
 
-        public string Name { get; set; }
+        public string Name { get; private set; }
 
-        public string Description { get; set; }
+        public string Description { get; private set; }
 
-        public string Sprite { get; set; }
+        public string Sprite { get; private set; }
 
 
         public static PokemonModel MapPokemon(PokeApiNet.Pokemon pokemon)
