@@ -1,15 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Button from '../defaultComponents/Button';
 import Input from '../defaultComponents/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
 
-const Search = () => {
+const SearchPokemon = (props) => {
     const [searchInput, setSearchInput] = useState("");
     const [validEntry, setValidEntry] = useState(false);
     const [hideWarning, setHideWarning] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+
+    const [width, setWidth] = useState(window.innerWidth);
+
+    useEffect(() => {
+        window.addEventListener('resize', updateWindowDimensions);
+
+        return () => {
+            window.removeEventListener('resize', updateWindowDimensions);
+        }
+    });
+
+    const updateWindowDimensions = () => {
+        setWidth(window.innerWidth);
+    }
 
     const onValidation = (value) => {
         if(value === "") {
@@ -27,7 +41,14 @@ const Search = () => {
             setHideWarning(false);
         } else {
             setIsLoading(true);
-            const result = await fetch(`pokemon/${searchInput}`);
+            await fetch(`pokemon/${searchInput}`)
+                .then(response => {
+                    if(response.ok)
+                        return response.json();
+                })
+                .then(json => {
+                    props.onSetResult(json);
+                });
             setIsLoading(false);
         }
     }
@@ -41,13 +62,13 @@ const Search = () => {
                 hideWarning={hideWarning}
             />
             <Button handleOnClick={handleOnSearch} isLoading={isLoading}>
-                <SearchIcon /> Search
+                <SearchIcon /> {width > 1000 && "Search"}
             </Button>
         </StyledContainer>
     );
 }
 
-export default Search;
+export default SearchPokemon;
 
 const StyledContainer = styled(Container)`
     flex-direction: row;

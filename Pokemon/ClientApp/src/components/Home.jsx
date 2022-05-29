@@ -1,15 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container } from 'reactstrap';
-import Search from './Search';
+import SearchPokemon from './SearchPokemon';
 import styled from 'styled-components';
 
 const Home = () => {
+  const [result, setResult] = useState();
+
+  useEffect(() => {
+    console.log(result);
+  }, [result]);
 
   return (
     <StyledContainer>
       <h1>Pokemon search engine</h1>
       <p>Enter a pokemon name to find out more details...</p>
-      <Search />
+      <SearchPokemon onSetResult={setResult} />
     </StyledContainer>
   );
 }
