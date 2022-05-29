@@ -20,6 +20,9 @@ namespace Pokemon.Services
 
         public async Task<PokemonModel> GetPokemon(string name)
         {
+            if(string.IsNullOrWhiteSpace(name))
+                return null;
+
             var pokemon = await _pokeApiWrapper.GetPokemon(name);
 
             return PokemonModel.MapPokemon(pokemon);
