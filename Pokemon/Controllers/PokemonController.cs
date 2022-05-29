@@ -18,7 +18,7 @@ namespace Pokemon.Controllers
         [HttpGet("{name}")]
         public async Task<IActionResult> Get(string name)
         {
-            if (name != null)
+            if (!string.IsNullOrWhiteSpace(name))
             {
                 var pokemon = await _pokemonService.GetPokemon(name);
                 if (pokemon != null)
@@ -27,7 +27,8 @@ namespace Pokemon.Controllers
                 }
                 return NotFound();
             }
-            return BadRequest();
+            var result = BadRequest();
+            return result;
         }
     }
 }
