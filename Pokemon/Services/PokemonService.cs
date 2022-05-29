@@ -1,33 +1,28 @@
-﻿using PokeApiNet;
+﻿using Pokemon.Models;
+using Pokemon.Wrappers;
 using System.Threading.Tasks;
 
 namespace Pokemon.Services
 {
     public interface IPokemonService
     {
-        Task<PokeApiNet.Pokemon> GetPokemon(string name);
+        Task<PokemonModel> GetPokemon(string name);
     }
 
     public class PokemonService : IPokemonService
     {
-        private readonly PokeApiClient pokeClient;
+        private readonly IPokeApiWrapper _pokeApiWrapper;
 
-        public PokemonService()
+        public PokemonService(IPokeApiWrapper pokeApiWrapper)
         {
-            pokeClient = new PokeApiClient();
+            _pokeApiWrapper = pokeApiWrapper;
         }
 
-        public async Task<PokeApiNet.Pokemon> GetPokemon(string name)
+        public async Task<PokemonModel> GetPokemon(string name)
         {
-            PokeApiNet.Pokemon pokemon = null;
-            try
-            {
-                pokemon = await pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(name).ConfigureAwait(false);
-            }
-            catch
-            {}
+            var pokemon = await _pokeApiWrapper.GetPokemon(name);
 
-            return pokemon;
+            return PokemonModel.MapPokemon(pokemon);
         }
     }
 }
