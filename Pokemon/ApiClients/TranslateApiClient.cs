@@ -3,20 +3,19 @@ using Pokemon.Helpers;
 using Pokemon.Models;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Web;
 
-namespace Pokemon.Clients
+namespace Pokemon.ApiClients
 {
     public interface ITranslateClient
     {
         Task<string> GetShakespeareTranslation(string text);
     }
 
-    public sealed class TranslateClient : ITranslateClient
+    public sealed class TranslateApiClient : ITranslateClient
     {
         private HttpClient _httpClient;
 
-        public TranslateClient()
+        public TranslateApiClient()
         {
             _httpClient = new HttpClient();
         }

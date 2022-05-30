@@ -1,7 +1,7 @@
 using Moq;
 using PokeApiNet;
 using Pokemon.Services;
-using Pokemon.Clients;
+using Pokemon.ApiClients;
 using System.Threading.Tasks;
 using Xunit;
 

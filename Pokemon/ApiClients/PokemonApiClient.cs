@@ -1,7 +1,7 @@
 ﻿using PokeApiNet;
 using System.Threading.Tasks;
 
-namespace Pokemon.Clients
+namespace Pokemon.ApiClients
 {
     public interface IPokemonApiClient
     {

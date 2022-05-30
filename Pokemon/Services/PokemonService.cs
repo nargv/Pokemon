@@ -1,5 +1,5 @@
 ﻿using Pokemon.Models;
-using Pokemon.Clients;
+using Pokemon.ApiClients;
 using System.Threading.Tasks;
 using System.Linq;
 using System;

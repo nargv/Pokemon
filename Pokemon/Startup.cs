@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pokemon.Services;
-using Pokemon.Clients;
+using Pokemon.ApiClients;
 
 namespace Pokemon
 {
@@ -26,7 +26,7 @@ namespace Pokemon
 
             services.AddSingleton<IPokemonService, PokemonService>();
             services.AddSingleton<IPokemonApiClient, PokemonApiClient>();
-            services.AddSingleton<ITranslateClient, TranslateClient>();
+            services.AddSingleton<ITranslateClient, TranslateApiClient>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
