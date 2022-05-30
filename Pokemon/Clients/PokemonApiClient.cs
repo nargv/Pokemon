@@ -1,22 +1,22 @@
 ﻿using PokeApiNet;
 using System.Threading.Tasks;
 
-namespace Pokemon.Wrappers
+namespace Pokemon.Clients
 {
-    public interface IPokeApiWrapper
+    public interface IPokemonApiClient
     {
         Task<PokeApiNet.Pokemon> GetPokemon(string name);
 
         Task<PokemonSpecies> GetPokemonSpecies(PokeApiNet.Pokemon pokemon);
     }
 
-    public class PokeApiWrapper : IPokeApiWrapper
+    public sealed class PokemonApiClient : IPokemonApiClient
     {
-        private readonly PokeApiClient pokeClient;
+        private readonly PokeApiNet.PokeApiClient pokeClient;
 
-        public PokeApiWrapper()
+        public PokemonApiClient()
         {
-            pokeClient = new PokeApiClient();
+            pokeClient = new PokeApiNet.PokeApiClient();
         }
 
         public async Task<PokeApiNet.Pokemon> GetPokemon(string name)

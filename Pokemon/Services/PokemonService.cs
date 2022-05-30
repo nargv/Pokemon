@@ -1,9 +1,9 @@
 ﻿using Pokemon.Models;
-using Pokemon.Wrappers;
+using Pokemon.Clients;
 using System.Threading.Tasks;
 using System.Linq;
-using PokeApiNet;
 using System;
+using Pokemon.Helpers;
 
 namespace Pokemon.Services
 {
@@ -12,13 +12,15 @@ namespace Pokemon.Services
         Task<PokemonModel> GetPokemon(string name);
     }
 
-    public class PokemonService : IPokemonService
+    public sealed class PokemonService : IPokemonService
     {
-        private readonly IPokeApiWrapper _pokeApiWrapper;
+        private readonly IPokemonApiClient _pokemonClient;
+        private readonly ITranslateClient _translateClient;
 
-        public PokemonService(IPokeApiWrapper pokeApiWrapper)
+        public PokemonService(IPokemonApiClient pokeApiWrapper, ITranslateClient translateClient)
         {
-            _pokeApiWrapper = pokeApiWrapper;
+            _pokemonClient = pokeApiWrapper;
+            _translateClient = translateClient;
         }
 
         public async Task<PokemonModel> GetPokemon(string name)
@@ -26,22 +28,33 @@ namespace Pokemon.Services
             if(string.IsNullOrWhiteSpace(name))
                 return null;
 
-            var pokemon = await _pokeApiWrapper.GetPokemon(name);
+            var pokemon = await _pokemonClient.GetPokemon(name);
 
             if (pokemon == null)
                 return null;
 
-            var description = await GetDescriptionByPokemon(pokemon);
+            var description = await GetShakespeareDescription(pokemon);
 
             return new PokemonModel(pokemon.Name, description, pokemon.Sprites.FrontDefault);
         }
 
+        private async Task<string> GetShakespeareDescription(PokeApiNet.Pokemon pokemon)
+        {
+            var description = await GetDescriptionByPokemon(pokemon).ConfigureAwait(false);
+
+            if (string.IsNullOrEmpty(description))
+                return null;
+
+            var result = await _translateClient.GetShakespeareTranslation(description);
+            return result ?? description;
+        }
+
         private async Task<string> GetDescriptionByPokemon(PokeApiNet.Pokemon pokemon)
         {
-            var result = await _pokeApiWrapper.GetPokemonSpecies(pokemon);
+            var result = await _pokemonClient.GetPokemonSpecies(pokemon);
 
             if (result == null)
-                return string.Empty;
+                return null;
 
             var englishFlavourTexts = result.FlavorTextEntries.Where(x => x.Language.Name == "en").ToList();
 
@@ -49,10 +62,10 @@ namespace Pokemon.Services
             {
                 var random = new Random();
                 var index = random.Next(0, englishFlavourTexts.Count - 1);
-                return englishFlavourTexts[index].FlavorText;
+                return StringHelpers.RemoveLineBreaks(englishFlavourTexts[index].FlavorText);
             }
 
-            return string.Empty;
+            return null;
         }
     }
 }
