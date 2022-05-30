@@ -19,6 +19,7 @@ const SearchResult = (props) => {
                     alt="new"
                 />
                 <Text type={"medium"}>{props.result.name}</Text>
+                <Text type={"medium"}>{props.result.description}</Text>
             </div>
         );
     }
