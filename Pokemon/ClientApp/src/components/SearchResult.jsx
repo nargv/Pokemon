@@ -36,7 +36,7 @@ export default SearchResult;
 const StyledContainer = styled(Container)`
     margin-top: 40px;
     margin-bottom: 40px;
-    height: 200px;
+    height: fit-content;
     text-align: center;
     border: 2px solid grey;
     border-radius: 4px;
