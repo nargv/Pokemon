@@ -4,6 +4,7 @@ import Input from '../defaultComponents/Input';
 import SearchIcon from '@material-ui/icons/Search';
 import { Container } from 'reactstrap';
 import styled from 'styled-components';
+import { pokemonApi } from '../api/pokemonApi';
 
 const SearchPokemon = (props) => {
     const [searchInput, setSearchInput] = useState("");
@@ -41,14 +42,8 @@ const SearchPokemon = (props) => {
             setHideWarning(false);
         } else {
             setIsLoading(true);
-            await fetch(`pokemon/${searchInput}`)
-                .then(response => {
-                    if(response.ok)
-                        return response.json();
-                })
-                .then(json => {
-                    props.onSetResult(json);
-                });
+            const result = await pokemonApi.getPokemonDetails(searchInput);
+            props.onSetResult(result);
             setIsLoading(false);
         }
     }
