@@ -10,7 +10,7 @@ const History = () => {
 
   const getSearches = () => {
     return (
-      searches.searches.map(item => (<SearchResult result={item} />))
+      searches.searches.map((item, index) => (<SearchResult key={index} result={item} />))
     );
   }
 
