@@ -1,12 +1,11 @@
+import axios from "axios";
+
 export const baseUrl = "pokemon";
 
 function getPokemonDetails(name) {
-    return fetch(`${baseUrl}/${name}`)
-            .then(response => {
-                if(response.ok)
-                    return response.json();
-            })
-            .catch(response => response);
+    return axios.get(`${baseUrl}/${name}`)
+            .then(response => response.data)
+            .catch(response => undefined);
 }
 
 export const pokemonApi = {
