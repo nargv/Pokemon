@@ -28,12 +28,12 @@ namespace Pokemon.Services
             if(string.IsNullOrWhiteSpace(name))
                 return null;
 
-            var pokemon = await _pokemonClient.GetPokemon(name);
+            var pokemon = await _pokemonClient.GetPokemon(name).ConfigureAwait(false);
 
             if (pokemon == null)
                 return null;
 
-            var description = await GetShakespeareDescription(pokemon);
+            var description = await GetShakespeareDescription(pokemon).ConfigureAwait(false);
 
             return new PokemonModel(pokemon.Name, description, pokemon.Sprites.FrontDefault);
         }
@@ -45,13 +45,13 @@ namespace Pokemon.Services
             if (string.IsNullOrEmpty(description))
                 return null;
 
-            var result = await _translateClient.GetShakespeareTranslation(description);
+            var result = await _translateClient.GetShakespeareTranslation(description).ConfigureAwait(false);
             return result ?? description;
         }
 
         private async Task<string> GetDescriptionByPokemon(PokeApiNet.Pokemon pokemon)
         {
-            var result = await _pokemonClient.GetPokemonSpecies(pokemon);
+            var result = await _pokemonClient.GetPokemonSpecies(pokemon).ConfigureAwait(false);
 
             if (result == null)
                 return null;

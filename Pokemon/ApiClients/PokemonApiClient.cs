@@ -39,7 +39,7 @@ namespace Pokemon.ApiClients
             PokemonSpecies species;
             try
             {
-                species = await pokeClient.GetResourceAsync(pokemon.Species);
+                species = await pokeClient.GetResourceAsync(pokemon.Species).ConfigureAwait(false);
             }
             catch
             {
