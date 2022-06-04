@@ -12,12 +12,12 @@ namespace TestPokemon.Services
     {
         private readonly PokemonService pokemonService;
         private readonly Mock<IPokemonApiClient> mockPokeClient;
-        private readonly Mock<ITranslateClient> mockTranslationClient;
+        private readonly Mock<ITranslateApiClient> mockTranslationClient;
 
         public PokemonServiceTests()
         {
             mockPokeClient = new Mock<IPokemonApiClient>();
-            mockTranslationClient = new Mock<ITranslateClient>();
+            mockTranslationClient = new Mock<ITranslateApiClient>();
             pokemonService = new PokemonService(mockPokeClient.Object, mockTranslationClient.Object);
         }
 
