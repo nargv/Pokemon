@@ -1,4 +1,4 @@
-﻿namespace Pokemon.Helpers
+﻿namespace Pokemon.Constants
 {
     public static class PokemonConstants
     {

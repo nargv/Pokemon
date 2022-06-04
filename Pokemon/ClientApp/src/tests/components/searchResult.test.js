@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import SearchResult from '../../components/SearchResult';
 
 
-describe("SearchPokemon tests", () => {
+describe("SearchResult tests", () => {
 
     test("No results displayed", async () => {
         render(
