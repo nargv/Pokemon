@@ -26,7 +26,7 @@ namespace Pokemon
 
             services.AddSingleton<IPokemonService, PokemonService>();
             services.AddSingleton<IPokemonApiClient, PokemonApiClient>();
-            services.AddSingleton<ITranslateClient, TranslateApiClient>();
+            services.AddSingleton<ITranslateApiClient, TranslateApiClient>();
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>

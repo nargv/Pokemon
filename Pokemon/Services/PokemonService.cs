@@ -15,9 +15,9 @@ namespace Pokemon.Services
     public sealed class PokemonService : IPokemonService
     {
         private readonly IPokemonApiClient _pokemonClient;
-        private readonly ITranslateClient _translateClient;
+        private readonly ITranslateApiClient _translateClient;
 
-        public PokemonService(IPokemonApiClient pokeApiWrapper, ITranslateClient translateClient)
+        public PokemonService(IPokemonApiClient pokeApiWrapper, ITranslateApiClient translateClient)
         {
             _pokemonClient = pokeApiWrapper;
             _translateClient = translateClient;

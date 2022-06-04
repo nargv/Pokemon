@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Pokemon.ApiClients
 {
-    public interface ITranslateClient
+    public interface ITranslateApiClient
     {
         Task<string> GetShakespeareTranslation(string text);
     }
 
-    public sealed class TranslateApiClient : ITranslateClient
+    public sealed class TranslateApiClient : ITranslateApiClient
     {
         private HttpClient _httpClient;
 

@@ -5,7 +5,7 @@ import { CircularProgress } from '@material-ui/core';
 const Button = (props) => {
     return (
         <StyledButton onClick={props.handleOnClick} disabled={props.isLoading}>
-            {props.isLoading ? <CircularProgress size="1rem" /> :props.children}
+            {props.isLoading ? <CircularProgress size="1rem" /> : props.children}
         </StyledButton>
     );
 }
