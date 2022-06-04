@@ -56,13 +56,17 @@ namespace Pokemon.Services
             if (result == null)
                 return null;
 
-            var englishFlavourTexts = result.FlavorTextEntries.Where(x => x.Language.Name == "en").ToList();
+            var englishFlavourTexts = 
+                result.FlavorTextEntries
+                .Where(x => x.Language.Name == "en")
+                .Select(x => x.FlavorText)
+                .ToList();
 
             if (englishFlavourTexts.Any())
             {
                 var random = new Random();
                 var index = random.Next(0, englishFlavourTexts.Count - 1);
-                return StringHelpers.RemoveLineBreaks(englishFlavourTexts[index].FlavorText);
+                return StringHelper.RemoveLineBreaks(englishFlavourTexts[index]);
             }
 
             return null;
