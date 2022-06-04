@@ -13,14 +13,14 @@ const SearchResult = (props) => {
 
     const getResults = () => {
         return (
-            <div>
+            <Container>
                 <img 
                     src={props.result.sprite}
                     alt="new"
                 />
                 <Text type={"medium"}>{props.result.name}</Text>
                 <Text type={"medium"}>{props.result.description}</Text>
-            </div>
+            </Container>
         );
     }
 

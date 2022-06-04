@@ -1,4 +1,4 @@
-﻿using Pokemon.Models;
+﻿using Pokemon.DataModels.ViewModels;
 using Pokemon.ApiClients;
 using System.Threading.Tasks;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace Pokemon.Services
 {
     public interface IPokemonService
     {
-        Task<PokemonModel> GetPokemon(string name);
+        Task<PokemonViewModel> GetPokemon(string name);
     }
 
     public sealed class PokemonService : IPokemonService
@@ -23,7 +23,7 @@ namespace Pokemon.Services
             _translateClient = translateClient;
         }
 
-        public async Task<PokemonModel> GetPokemon(string name)
+        public async Task<PokemonViewModel> GetPokemon(string name)
         {
             if(string.IsNullOrWhiteSpace(name))
                 return null;
@@ -35,7 +35,7 @@ namespace Pokemon.Services
 
             var description = await GetShakespeareDescription(pokemon).ConfigureAwait(false);
 
-            return new PokemonModel(pokemon.Name, description, pokemon.Sprites.FrontDefault);
+            return new PokemonViewModel(pokemon.Name, description, pokemon.Sprites.FrontDefault);
         }
 
         private async Task<string> GetShakespeareDescription(PokeApiNet.Pokemon pokemon)

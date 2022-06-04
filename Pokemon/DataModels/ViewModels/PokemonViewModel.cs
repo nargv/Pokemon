@@ -1,8 +1,8 @@
-﻿namespace Pokemon.Models
+﻿namespace Pokemon.DataModels.ViewModels
 {
-    public class PokemonModel
+    public class PokemonViewModel
     {
-        public PokemonModel(string name, string description, string sprite)
+        public PokemonViewModel(string name, string description, string sprite)
         {
             Name = name;
             Description = description;

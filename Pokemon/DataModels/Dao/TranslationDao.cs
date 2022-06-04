@@ -1,11 +1,11 @@
-﻿namespace Pokemon.Models
+﻿namespace Pokemon.DataModels.Dao
 {
-    public class Translation
+    public class TranslationDao
     {
-        public Content Contents { get; set; }
+        public ContentDao Contents { get; set; }
     }
 
-    public class Content
+    public class ContentDao
     {
         public string Translated { get; set; }
 

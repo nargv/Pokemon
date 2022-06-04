@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Pokemon.Helpers;
-using Pokemon.Models;
+using Pokemon.DataModels.Dao;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -22,11 +22,11 @@ namespace Pokemon.ApiClients
 
         public async Task<string> GetShakespeareTranslation(string text)
         {
-            var response = await _httpClient.GetAsync(StringHelpers.GetTranslationPath("shakespeare", text)).ConfigureAwait(false);
+            var response = await _httpClient.GetAsync(StringHelpers.GetTranslationPath(PokemonConstants.Translation.SHAKESPEARE, text)).ConfigureAwait(false);
             if (response.IsSuccessStatusCode)
             {
                 var jsonResult = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<Translation>(jsonResult);
+                var result = JsonConvert.DeserializeObject<TranslationDao>(jsonResult);
                 return result.Contents.Translated;
             }
             return null;

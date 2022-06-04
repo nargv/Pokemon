@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Pokemon.Controllers;
-using Pokemon.Models;
+using Pokemon.DataModels.ViewModels;
 using Pokemon.Services;
 using System.Net;
 using System.Threading.Tasks;
@@ -41,7 +41,7 @@ namespace TestPokemon.Controllers
         [Fact]
         public async Task Get_NotFound()
         {
-            mockService.Setup(s => s.GetPokemon(It.IsAny<string>())).ReturnsAsync(null as PokemonModel);
+            mockService.Setup(s => s.GetPokemon(It.IsAny<string>())).ReturnsAsync(null as PokemonViewModel);
 
             var result = await pokemonController.Get("pika") as StatusCodeResult;
 
