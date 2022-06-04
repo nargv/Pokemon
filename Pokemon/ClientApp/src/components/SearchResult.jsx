@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from 'reactstrap';
 import Text from '../defaultComponents/Text';
 import styled from 'styled-components';
