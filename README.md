@@ -16,4 +16,9 @@ All your searches are saved per session using redux tools. It stores a pokemon's
 1. Download the zip file then extract to a folder of your choice
 2. Open CMD then navigate to "Pokemon-master\Pokemon\ClientApp" - run "npm install"
 3. On CMD again, go one folder up "Pokemon-master\Pokemon" - run "dotnet run"
-4. This will launch the application!
+4. Provides below results:
+
+![image](https://user-images.githubusercontent.com/78615105/172024360-fe7437bd-f636-4e44-acbb-577a8368fbb9.png)
+
+6. Copy the first localhost launch link and paste into your browser. 
+7. Web Application is ready and running!
