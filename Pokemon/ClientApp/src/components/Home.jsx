@@ -23,8 +23,8 @@ const Home = () => {
 
   return (
     <StyledContainer>
-      <Text type={"large"}>Pokemon search engine</Text>
-      <Text type={"medium"}>Enter a pokemon name to find out more details...</Text>
+      <Text type={"large"}>Pokémon search engine</Text>
+      <Text type={"medium"}>Enter a Pokémon name to find out more details...</Text>
       <SearchPokemon onSetResult={handleOnSetResult} />
       {displayResults && <SearchResult result={result} />}
     </StyledContainer>
