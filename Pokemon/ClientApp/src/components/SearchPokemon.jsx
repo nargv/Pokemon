@@ -12,20 +12,6 @@ const SearchPokemon = (props) => {
     const [hideWarning, setHideWarning] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
 
-    const [width, setWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        window.addEventListener('resize', updateWindowDimensions);
-
-        return () => {
-            window.removeEventListener('resize', updateWindowDimensions);
-        }
-    });
-
-    const updateWindowDimensions = () => {
-        setWidth(window.innerWidth);
-    }
-
     const onValidation = (value) => {
         if(value === "") {
             setValidEntry(false);
@@ -38,13 +24,15 @@ const SearchPokemon = (props) => {
     }
 
     const handleOnSearch = async () => {
-        if(!validEntry) {
-            setHideWarning(false);
-        } else {
-            setIsLoading(true);
-            const result = await pokemonApi.getPokemonDetails(searchInput);
-            props.onSetResult(result);
-            setIsLoading(false);
+        if(!isLoading) {
+            if(!validEntry) {
+                setHideWarning(false);
+            } else {
+                setIsLoading(true);
+                const result = await pokemonApi.getPokemonDetails(searchInput);
+                props.onSetResult(result);
+                setIsLoading(false);
+            }
         }
     }
 
@@ -55,9 +43,10 @@ const SearchPokemon = (props) => {
                 onValueChange={setSearchInput}
                 warningMessage={"search input is invalid"} 
                 hideWarning={hideWarning}
+                onEnter={handleOnSearch}
             />
             <Button handleOnClick={handleOnSearch} isLoading={isLoading}>
-                <SearchIcon /> {width > 1000 && "Search"}
+                <SearchIcon />
             </Button>
         </StyledContainer>
     );

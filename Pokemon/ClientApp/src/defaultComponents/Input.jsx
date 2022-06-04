@@ -10,12 +10,18 @@ const Input = (props) => {
         }
     }
 
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+          props.onEnter();
+        }
+    }
+
     return (
         <div>
             {props.label && (
                 <Text type={"large"}>{props.label}</Text>
             )}
-            <StyledInput type="text" onChange={handleOnValueChange} />
+            <StyledInput type="text" onChange={handleOnValueChange} onKeyDown={handleKeyDown} />
             {!props.hideWarning && (
                 <Text type={"small"} isWarning={true}>{props.warningMessage}</Text>
             )}
