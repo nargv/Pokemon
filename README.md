@@ -4,7 +4,7 @@ This is a small, light-weight, fun & interactive pokemon search engine.
 
 Enter a pokemon name and press search button or enter key to create the request. This will fetch a small sprite and a shakespeare translated description of the pokemon. These descriptions are a random pick of a list of available descriptions for any individual pokemon. If the pokemon doesn't exist or the entry is an invalid input, the UI will make sure to let you know.
 
-All your searches are saved per session using redux tools. It stores a pokemon's name, description and the sprite. In the second tab of "History", you'll be able to view all the searches you've made in the session.
+All your searches are saved per session using redux tools. It stores a pokemon's name, description and the sprite. In the second tab of "History", you'll be able to view all the searches you've made in the session (newest to oldest).
 
 **Packages to install: (If not already installed)**
 1. Install node js https://nodejs.org/en/download/
