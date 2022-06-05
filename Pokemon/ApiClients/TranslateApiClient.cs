@@ -23,7 +23,7 @@ namespace Pokemon.ApiClients
 
         public async Task<string> GetShakespeareTranslation(string text)
         {
-            var response = await _httpClient.GetAsync(UrlHelper.GetTranslationPath(PokemonConstants.Translation.SHAKESPEARE, text)).ConfigureAwait(false);
+            var response = await _httpClient.GetAsync(UrlHelper.GetTranslationPath(PokemonConstants.Translation.SHAKESPEARE, text));
             if (response.IsSuccessStatusCode)
             {
                 var jsonResult = await response.Content.ReadAsStringAsync();
