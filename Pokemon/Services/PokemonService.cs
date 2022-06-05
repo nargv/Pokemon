@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System;
 using Pokemon.Helpers;
+using Pokemon.Constants;
 
 namespace Pokemon.Services
 {
@@ -58,7 +59,7 @@ namespace Pokemon.Services
 
             var englishFlavourTexts = 
                 result.FlavorTextEntries
-                .Where(x => x.Language.Name == "en")
+                .Where(x => x.Language.Name == PokemonConstants.Language.EN)
                 .Select(x => x.FlavorText)
                 .ToList();
 

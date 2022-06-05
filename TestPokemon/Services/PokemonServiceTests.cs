@@ -5,6 +5,7 @@ using Pokemon.ApiClients;
 using System.Threading.Tasks;
 using Xunit;
 using System.Collections.Generic;
+using Pokemon.Constants;
 
 namespace TestPokemon.Services
 {
@@ -65,7 +66,11 @@ namespace TestPokemon.Services
             {
                 FlavorTextEntries = new List<PokemonSpeciesFlavorTexts>
                 {
-                    new PokemonSpeciesFlavorTexts { Language = new NamedApiResource<Language> { Name = "en" }, FlavorText = text },
+                    new PokemonSpeciesFlavorTexts
+                    { 
+                        Language = new NamedApiResource<Language> { Name = PokemonConstants.Language.EN },
+                        FlavorText = text 
+                    },
                 }
             };
 

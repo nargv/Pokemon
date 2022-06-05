@@ -6,5 +6,10 @@
         {
             public static readonly string SHAKESPEARE = "shakespeare";
         }
+
+        public static class Language
+        {
+            public static readonly string EN = "en";
+        }
     }
 }
