@@ -1,3 +1,7 @@
+**Technologies used**
+* Back-end: .NET Core C#
+* Front-end: React JS
+
 **Pokémon search engine**
 
 This is a small, light-weight, fun & interactive pokemon search engine.
