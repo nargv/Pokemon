@@ -24,7 +24,7 @@ namespace Pokemon.ApiClients
             PokeApiNet.Pokemon pokemon;
             try
             {
-                pokemon = await pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(name).ConfigureAwait(false);
+                pokemon = await pokeClient.GetResourceAsync<PokeApiNet.Pokemon>(name);
             }
             catch
             {
@@ -39,7 +39,7 @@ namespace Pokemon.ApiClients
             PokemonSpecies species;
             try
             {
-                species = await pokeClient.GetResourceAsync(pokemon.Species).ConfigureAwait(false);
+                species = await pokeClient.GetResourceAsync(pokemon.Species);
             }
             catch
             {

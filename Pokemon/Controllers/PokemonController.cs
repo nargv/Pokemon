@@ -20,7 +20,7 @@ namespace Pokemon.Controllers
         {
             if (!string.IsNullOrWhiteSpace(name))
             {
-                var pokemon = await _pokemonService.GetPokemon(name).ConfigureAwait(false);
+                var pokemon = await _pokemonService.GetPokemon(name);
                 if (pokemon != null)
                 {
                     return Ok(pokemon);
