@@ -19,7 +19,7 @@ All your searches are saved per session using redux tools. It stores a pokemon's
 2. Install .NET SDK 3.1 https://dotnet.microsoft.com/en-us/download/dotnet/3.1
 
 **Instructions to run:**
-1. Download the zip file then extract to a folder of your choice
+1. Download the zip file from the "Code" dropdown at the top, then extract to a folder of your choice.
 2. Open CMD then navigate to "Pokemon-master\Pokemon\ClientApp" - run "npm install"
 3. On CMD again, go one folder up "Pokemon-master\Pokemon" - run "dotnet run"
 4. Copy the first localhost launch link and paste into your browser. 
